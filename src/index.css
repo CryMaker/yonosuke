@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-parchment-50 text-ink-900 font-sans text-body m-0;
+  }
+
+  ::selection {
+    @apply bg-burgundy-100 text-burgundy-700;
+  }
+}
+
+@layer components {
+  .prose-content h2 {
+    @apply font-serif text-h2 text-burgundy-700 mt-12 mb-4;
+  }
+  .prose-content h3 {
+    @apply font-serif text-h3 text-ink-900 mt-8 mb-3;
+  }
+  .prose-content p {
+    @apply mb-6 leading-relaxed;
+  }
+  .prose-content blockquote {
+    @apply border-l-4 border-gold-600 bg-gold-200/30 italic p-6 rounded-r-lg my-8;
+  }
+  .prose-content a {
+    @apply text-burgundy-700 underline underline-offset-2 decoration-burgundy-700/30 hover:decoration-burgundy-700 transition;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
