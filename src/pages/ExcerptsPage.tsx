@@ -1,14 +1,15 @@
 import { useExcerpts } from '../hooks/useExcerpts'
+import { useAuthors } from '../hooks/useAuthors'
 import { ExcerptGrid } from '../components/excerpts/ExcerptGrid'
 import { Container } from '../components/ui/Container'
 import { Skeleton } from '../components/ui/Skeleton'
 import { EmptyState } from '../components/ui/EmptyState'
 import { ErrorState } from '../components/ui/ErrorState'
-import { authors } from '../data/authors'
 
 export function ExcerptsPage() {
   const { excerpts, loading, error } = useExcerpts()
-  const authorMap = Object.fromEntries(authors.map((a) => [a.id, a]))
+  const { authors } = useAuthors()
+  const authorMap = Object.fromEntries((authors ?? []).map((a) => [a.id, a]))
 
   return (
     <Container as="section" className="py-16">

@@ -1,5 +1,6 @@
 import { useArticles } from '../hooks/useArticles'
 import { useExcerpts } from '../hooks/useExcerpts'
+import { useAuthors } from '../hooks/useAuthors'
 import { HeroSection } from '../components/home/HeroSection'
 import { FeaturedArticles } from '../components/home/FeaturedArticles'
 import { FeaturedExcerpts } from '../components/home/FeaturedExcerpts'
@@ -7,16 +8,16 @@ import { Skeleton } from '../components/ui/Skeleton'
 import { ErrorState } from '../components/ui/ErrorState'
 import { EmptyState } from '../components/ui/EmptyState'
 import { Container } from '../components/ui/Container'
-import { authors } from '../data/authors'
 
 export function HomePage() {
   const { articles, loading: articlesLoading, error: articlesError } = useArticles()
   const { excerpts, loading: excerptsLoading, error: excerptsError } = useExcerpts()
+  const { authors, loading: authorsLoading } = useAuthors()
 
-  const loading = articlesLoading || excerptsLoading
+  const loading = articlesLoading || excerptsLoading || authorsLoading
   const error = articlesError ?? excerptsError
 
-  const authorMap = Object.fromEntries(authors.map((a) => [a.id, a]))
+  const authorMap = Object.fromEntries((authors ?? []).map((a) => [a.id, a]))
   const featuredArticles = articles?.filter((a) => a.featured) ?? []
   const featuredExcerpts = excerpts?.filter((e) => e.featured) ?? []
 
